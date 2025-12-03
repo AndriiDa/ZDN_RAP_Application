@@ -1,0 +1,79 @@
+managed implementation in class zbp_i_purchasereqhdr unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_PurchaseReqHdr alias PurchaseReqHdr
+persistent table zdnpr_req_hdra
+draft table zdnpr_req_hdrd
+lock master total etag LastChangedAt
+authorization master ( global )
+etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) PrUuid;
+  field ( numbering : managed ) PrUuid;
+  association _PurchaseReqItm { create; with draft; }
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zdnpr_req_hdra
+    {
+      PrUuid             = pr_uuid;
+      PrNumber           = pr_number;
+      PrDescription      = pr_description;
+      PrType             = pr_type;
+      Requester          = requester;
+      Department         = department;
+      TotalAmount        = total_amount;
+      Currency           = currency;
+      OverallStatus      = overall_status;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+define behavior for ZI_PurchaseReqItm alias PurchaseReqItm
+persistent table zdnpr_req_itma
+draft table zdnpr_req_itmd
+lock dependent by _PurchaseReqHdr
+authorization dependent by _PurchaseReqHdr
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) PrUuid, ItemUuid;
+  field ( numbering : managed ) ItemUuid;
+  association _PurchaseReqHdr { with draft; }
+
+  mapping for zdnpr_req_itma
+    {
+      ItemUuid           = item_uuid;
+      PrUuid             = pr_uuid;
+      ItemNumber         = item_number;
+      MaterialNumber     = material_number;
+      MaterialDesc       = material_desc;
+      Quantity           = quantity;
+      Unit               = unit;
+      PricePerUnit       = price_per_unit;
+      Currency           = currency;
+      TotalPrice         = total_price;
+      DeliveryDate       = delivery_date;
+      Plant              = plant;
+      StorageLocation    = storage_location;
+      ItemStatus         = item_status;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

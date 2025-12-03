@@ -1,0 +1,5 @@
+CLASS zbp_i_purchasereqhdr DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_purchasereqhdr.
+ENDCLASS.
+
+CLASS zbp_i_purchasereqhdr IMPLEMENTATION.
+ENDCLASS.

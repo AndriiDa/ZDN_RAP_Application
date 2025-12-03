@@ -1,0 +1,64 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Item',
+    typeNamePlural: 'Items'
+  }
+}
+annotate entity ZC_PurchaseReqItm
+    with 
+{
+  @UI: {
+    lineItem: [ { position: 10, importance: #HIGH } ],
+    identification: [ { position: 10 } ]
+  }
+  ItemNumber;
+  
+  @UI: {
+    lineItem: [ { position: 20, importance: #HIGH } ],
+    identification: [ { position: 20 } ]
+  }
+  MaterialNumber;
+  
+  @UI: {
+    lineItem: [ { position: 30, importance: #HIGH } ],
+    identification: [ { position: 30 } ]
+  }
+  MaterialDesc;
+  
+  @UI: {
+    lineItem: [ { position: 40, importance: #MEDIUM } ],
+    identification: [ { position: 40 } ]
+  }
+  Quantity;
+  
+  @UI: {
+    lineItem: [ { position: 50, importance: #MEDIUM } ],
+    identification: [ { position: 50 } ]
+  }
+  PricePerUnit;
+  
+  @UI: {
+    lineItem: [ { position: 60, importance: #HIGH } ],
+    identification: [ { position: 60 } ]
+  }
+  TotalPrice;
+  
+  @UI: {
+    lineItem: [ { position: 70, importance: #MEDIUM } ],
+    identification: [ { position: 70 } ]
+  }
+  DeliveryDate;
+  
+  @UI: {
+    lineItem: [ { position: 80, importance: #MEDIUM } ],
+    identification: [ { position: 80 } ]
+  }
+  Plant;
+  
+  @UI.hidden: true
+  ItemUuid;
+  
+  @UI.hidden: true
+  PrUuid;
+}

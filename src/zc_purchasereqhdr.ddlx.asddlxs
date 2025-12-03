@@ -1,0 +1,81 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Purchase Requisition',
+    typeNamePlural: 'Purchase Requisitions',
+    title: { type: #STANDARD, value: 'PrNumber' },
+    description: { value: 'PrDescription' }
+  }
+}
+annotate entity ZC_PURCHASEREQHDR
+    with 
+{
+  @UI.facet: [
+    {
+      id: 'PurchaseRequisition',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Purchase Requisition',
+      position: 10
+    },
+    {
+      id: 'Items',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Items',
+      position: 20,
+      targetElement: '_PurchaseReqItm'
+    }
+  ]
+  
+  @UI: {
+    lineItem: [ { position: 10, importance: #HIGH } ],
+    identification: [ { position: 10 } ],
+    selectionField: [ { position: 10 } ]
+  }
+  PrNumber;
+  
+  @UI: {
+    lineItem: [ { position: 20, importance: #HIGH } ],
+    identification: [ { position: 20 } ]
+  }
+  PrDescription;
+  
+  @UI: {
+    lineItem: [ { position: 30, importance: #MEDIUM } ],
+    identification: [ { position: 30 } ],
+    selectionField: [ { position: 20 } ]
+  }
+  PrType;
+  
+  @UI: {
+    lineItem: [ { position: 40, importance: #MEDIUM } ],
+    identification: [ { position: 40 } ]
+  }
+  Requester;
+  
+  @UI: {
+    lineItem: [ { position: 50, importance: #MEDIUM } ],
+    identification: [ { position: 50 } ]
+  }
+  Department;
+  
+  @UI: {
+    lineItem: [ { position: 60, importance: #HIGH } ],
+    identification: [ { position: 60 } ]
+  }
+  TotalAmount;
+  
+  @UI: {
+    lineItem: [ { position: 70, importance: #HIGH, criticality: 'OverallStatus' } ],
+    identification: [ { position: 70 } ],
+    selectionField: [ { position: 30 } ]
+  }
+  OverallStatus;
+  
+  @UI.hidden: true
+  PrUuid;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

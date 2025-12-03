@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition PURCHASEREQ'
+define service Z_UI_PURCHASEREQ_O4 {
+  expose ZC_PURCHASEREQHDR as PurchaseReqHdr;
+  expose ZC_PurchaseReqItm as PurchaseReqItm;
+}
